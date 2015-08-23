@@ -28,18 +28,18 @@ public class RedesController {
 			texto = frase.toString().split(";");
 		}else{
 			if(osName.contains("Linux")){
-				String ifconfig = processo.lerProcesso("ifconfig");
+				String ifconfig = processo.lerProcesso("ip addr");
 				texto = ifconfig.split("\n");
 				
 				for(String sentenca : texto)
-					if(sentenca.contains("Ethernet") || sentenca.contains("inet"))
+					if(sentenca.contains("/ether") || sentenca.contains("inet"))
 						frase.append(sentenca + ";");
 						
 				texto = frase.toString().split(";");
 				frase.setLength(0);
 				
 				for(int i = 0; i < (texto.length - 1); i++)
-					if(texto[i].contains("Ethernet") && texto[i + 1].contains("inet"))
+					if(texto[i].contains("/ether") && texto[i + 1].contains("inet"))
 						frase.append(texto[i] + ";" + texto[i + 1] + ";");
 				
 				texto = frase.toString().split(";");
