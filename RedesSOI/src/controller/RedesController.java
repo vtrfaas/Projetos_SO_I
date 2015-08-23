@@ -43,9 +43,7 @@ public class RedesController {
 				
 				texto = frase.split(";");	
 			}
-		}
-		
-		
+		}	
 	}
 	
 	public String mostra(){
