@@ -13,6 +13,7 @@ public class RedesController {
 			String ipconfig = processo.lerProcesso("ipconfig");
 			ipconfig = ipconfig.trim();
 			texto = ipconfig.split("\n");
+			frase.setLength(0);
 			
 			for(String sentenca : texto)
 				if(sentenca.contains("adapter") || sentenca.contains("IPv4"))
@@ -30,6 +31,7 @@ public class RedesController {
 			if(osName.contains("Linux")){
 				String ifconfig = processo.lerProcesso("ip addr");
 				texto = ifconfig.split("\n");
+				frase.setLength(0);
 				
 				for(String sentenca : texto)
 					if(sentenca.contains("/ether") || sentenca.contains("inet"))
