@@ -44,7 +44,7 @@ public class RedesController {
 				
 				texto = frase.toString().split(";");
 			}else{
-				JOptionPane.showMessageDialog(null, "Sistema Operacional não encontrado", "Mensagem do sistema", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "OS not found", "System message", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	}
@@ -58,7 +58,8 @@ public class RedesController {
 	
 	public String ping(String osName){
 		StringBuffer buffer = new StringBuffer();
-		int tamanho = 10, media = 0;
+		float media = 0;
+		int tamanho = 10;
 		if(osName.contains("Windows")){
 			int lastIndex = 0;
 			String ping = processo.lerProcesso("ping -n 10 www.google.com.br");
@@ -83,7 +84,28 @@ public class RedesController {
 			for(String s : texto)
 				media += Integer.parseInt(s);
 			
-			buffer.append("Média: " + media/10 + "ms");
+			buffer.append(osName + " - Media: " + media/tamanho + "ms");
+		}else{
+			if(osName.contains("Linux")){
+				int lastIndex = 0;
+				String ping = processo.lerProcesso("ping -c 10 www.google.com.br");
+				ping = ping.trim();
+				texto = ping.split("\n");
+				
+				for(String sentenca : texto)
+					if(sentenca.contains("ttl")){
+						lastIndex = sentenca.lastIndexOf("ms");
+						buffer.append(sentenca.substring(lastIndex - 5, lastIndex - 1) + ";");
+					}
+				
+				texto = buffer.toString().split(";");
+				buffer.setLength(0);
+				
+				for(String s : texto)
+					media = Float.parseFloat(s);
+				
+				buffer.append(osName + " - Media: " + media/tamanho + "ms");	
+			}
 		}
 		return buffer.toString();
 	}

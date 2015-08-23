@@ -18,18 +18,18 @@ public class Main {
 					String osName = processo.sisOp();
 					RedesController rede = new RedesController();
 					rede.ip(osName);
-					System.out.println(rede.mostra());
+					JOptionPane.showMessageDialog(null, rede.mostra());
 					break;
 				case 2:
 					processo = new ProcessosController();
 					String nomeOS = processo.sisOp();
 					RedesController network = new RedesController();
-					System.out.println(network.ping(nomeOS));
+					JOptionPane.showMessageDialog(null, network.ping(nomeOS));
 					break;
 				case 3:
 					System.exit(0);
 				default:
-					JOptionPane.showMessageDialog(null, "Opção inválida!");
+					JOptionPane.showMessageDialog(null, "Invalid Option");
 					break;
 			}
 		}
