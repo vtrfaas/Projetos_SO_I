@@ -6,44 +6,42 @@ public class RedesController {
 	private String[] texto = null;
 	
 	public void ip(String osName){
+		StringBuffer frase = new StringBuffer();
 		if(osName.contains("Windows")){
-			String frase = "";
 			String ipconfig = processo.lerProcesso("ipconfig");
 			ipconfig = ipconfig.trim();
 			texto = ipconfig.split("\n");
 			
 			for(String sentenca : texto)
 				if(sentenca.contains("adapter") || sentenca.contains("IPv4"))
-					frase = frase.concat(sentenca + ";");
+					frase = frase.append(sentenca + ";");
 			
-			texto = frase.split(";");
-			frase = "";
+			texto = frase.toString().split(";");
+			frase.setLength(0);
 			
 			for(int i = 0; i < (texto.length - 1); i++)
 				if(texto[i].contains("adapter") && texto[i + 1].contains("IPv4"))
-					frase = frase.concat(texto[i] + ";" + texto[i + 1] + ";");
+					frase = frase.append(texto[i] + ";" + texto[i + 1] + ";");
 			
-			texto = frase.split(";");
+			texto = frase.toString().split(";");
 		}else{
 			if(osName.contains("Linux")){
-				String frase = "";
 				String ifconfig = processo.lerProcesso("ifconfig");
 				texto = ifconfig.split("\n");
 				
 				for(String sentenca : texto)
 					if(sentenca.contains("Ethernet") || sentenca.contains("inet"))
-						frase = frase.concat(sentenca + ";").trim();
+						frase = frase.append(sentenca + ";");
 						
-				texto = frase.split(";");
-				frase = "";
+				texto = frase.toString().split(";");
 				
 				for(int i = 0; i < (texto.length - 1); i++)
 					if(texto[i].contains("Ethernet") && texto[i + 1].contains("inet"))
-						frase = frase.concat(texto[i] + ";" + texto[i + 1] + ";");
+						frase = frase.append(texto[i] + ";" + texto[i + 1] + ";");
 				
-				texto = frase.split(";");	
+				texto = frase.toString().split(";");
 			}
-		}	
+		}
 	}
 	
 	public String mostra(){
