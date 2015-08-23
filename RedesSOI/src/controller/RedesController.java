@@ -102,7 +102,7 @@ public class RedesController {
 				buffer.setLength(0);
 				
 				for(String s : texto)
-					media = Float.parseFloat(s);
+					media += Float.parseFloat(s);
 				
 				buffer.append(osName + " - Media: " + media/tamanho + "ms");	
 			}
