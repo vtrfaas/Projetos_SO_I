@@ -1,9 +1,15 @@
 package view;
 
+import controller.ProcessosController;
+import controller.RedesController;
+
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		ProcessosController processo = new ProcessosController();
+		RedesController rede = new RedesController();
+		String osName = processo.sisOp();
+		System.out.println(rede.ip(osName));
 
 	}
 
