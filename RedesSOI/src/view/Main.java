@@ -9,7 +9,8 @@ public class Main {
 		ProcessosController processo = new ProcessosController();
 		RedesController rede = new RedesController();
 		String osName = processo.sisOp();
-		System.out.println(rede.ip(osName));
+		rede.ip(osName);
+		System.out.println(rede.mostra());
 
 	}
 
