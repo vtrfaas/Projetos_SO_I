@@ -71,7 +71,7 @@ public class ProcessosController
 			}
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
 		return buffer.toString();
