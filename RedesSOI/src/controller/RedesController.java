@@ -16,14 +16,14 @@ public class RedesController {
 			frase.setLength(0);
 			
 			for(String sentenca : texto)
-				if(sentenca.contains("adapter") || sentenca.contains("IPv4"))
+				if(sentenca.contains("Adaptador") || sentenca.contains("IPv4"))
 					frase.append(sentenca + ";");
 			
 			texto = frase.toString().split(";");
 			frase.setLength(0);
 			
 			for(int i = 0; i < (texto.length - 1); i++)
-				if(texto[i].contains("adapter") && texto[i + 1].contains("IPv4"))
+				if(texto[i].contains("Adaptador") && texto[i + 1].contains("IPv4"))
 					frase.append(texto[i] + ";" + texto[i + 1] + ";");
 			
 			texto = frase.toString().split(";");
@@ -60,24 +60,30 @@ public class RedesController {
 	
 	public String ping(String osName){
 		StringBuffer buffer = new StringBuffer();
+		String keyWord = "time=";
 		float media = 0;
 		int tamanho = 10;
 		if(osName.contains("Windows")){
-			int lastIndex = 0;
+			int lastIndex = 0, startIndex = 0;
 			String ping = processo.lerProcesso("ping -n 10 www.google.com.br");
 			ping = ping.trim();
 			texto = ping.split("\n");
 			
 			for(String sentenca : texto)
-				if(sentenca.contains("Reply") && sentenca.contains("time"))
-					buffer.append(sentenca + ";");
+				if(sentenca.contains(keyWord)){
+					startIndex = sentenca.lastIndexOf(keyWord);
+					lastIndex = sentenca.lastIndexOf("ms");
+					buffer.append(sentenca.substring(startIndex, lastIndex) + ";");
+				}
+					
 				
 			texto = buffer.toString().split(";");
 			buffer.setLength(0);
 			
 			for(String filtro : texto){
-				lastIndex = filtro.lastIndexOf("ms");
-				buffer.append(filtro.substring(lastIndex - 2, lastIndex) + ";");
+				startIndex = filtro.indexOf("=");
+				lastIndex = filtro.length();
+				buffer.append(filtro.substring(startIndex + 1, lastIndex) + ";");
 			}
 			
 			texto = buffer.toString().split(";");
