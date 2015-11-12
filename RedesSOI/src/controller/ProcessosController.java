@@ -17,8 +17,8 @@ public class ProcessosController
 	public void chamaProcesso(String caminho){
 		try {
 			Process processo = Runtime.getRuntime().exec(caminho);
-		} catch (IOException e) { //trata o erro de elevação(requer administrador) linha abaixo
-			if (e.getMessage().contains("eleva")){ //verifica se aplicação requer elevação do usuário(administrador)
+		} catch (IOException e) { //trata o erro de elevaï¿½ï¿½o(requer administrador) linha abaixo
+			if (e.getMessage().contains("eleva")){ //verifica se aplicaï¿½ï¿½o requer elevaï¿½ï¿½o do usuï¿½rio(administrador)
 				StringBuffer buffer = new StringBuffer();
 				buffer.append("cmd /c "); //pede as credenciais do Windows
 				buffer.append(caminho);
@@ -28,7 +28,7 @@ public class ProcessosController
 					JOptionPane.showMessageDialog(null, e.getMessage(), 
 							"ERRO", JOptionPane.ERROR_MESSAGE);
 				}
-			} else{ //trata o erro se o processo chamado for inválido
+			} else{ //trata o erro se o processo chamado for invï¿½lido
 				JOptionPane.showMessageDialog(null, e.getMessage(), 
 						"ERRO", JOptionPane.ERROR_MESSAGE);
 			}
@@ -40,7 +40,7 @@ public class ProcessosController
 		buffer.append("taskkill.exe ");
 		int pid = 0;
 		try{ //tenta matar o processo pelo PID
-			pid = Integer.parseInt(id); //se houver erro na conversão cai no catch
+			pid = Integer.parseInt(id); //se houver erro na conversï¿½o cai no catch
 			buffer.append("/PID ");
 			buffer.append(id);
 		}catch(Exception e){ //mata o processo pelo seu nome
@@ -59,11 +59,11 @@ public class ProcessosController
 		try {
 			Process processo = Runtime.getRuntime().exec(tarefa);
 			InputStream fluxo = processo.getInputStream(); //captura a saida do processo (mensagem)
-			InputStreamReader leFluxo = new InputStreamReader(fluxo); //associa a variável fluxo e converte esse fluxo em caracteres
+			InputStreamReader leFluxo = new InputStreamReader(fluxo); //associa a variï¿½vel fluxo e converte esse fluxo em caracteres
 			BufferedReader bufferLeitura = new BufferedReader(leFluxo);//joga o fluxo convertido no buffer 
 			
 			String linha = bufferLeitura.readLine(); 
-			//lê o buffer linha a linha(para qdo a linha estiver vazia)
+			//lï¿½ o buffer linha a linha(para qdo a linha estiver vazia)
 			while(linha != null){
 				buffer.append(linha);
 				buffer.append("\n");
@@ -75,5 +75,9 @@ public class ProcessosController
 		}
 		
 		return buffer.toString();
+	}
+	
+	private void teste(){
+		System.out.println("");
 	}
 }
