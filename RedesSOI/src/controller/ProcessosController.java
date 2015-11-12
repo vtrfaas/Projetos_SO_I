@@ -18,6 +18,10 @@ public class ProcessosController
 		//TODO
 	}
 	
+	public void mergeMergeMERGE(){
+		//TODO
+	}
+	
 	public void chamaProcesso(String caminho){
 		try {
 			Process processo = Runtime.getRuntime().exec(caminho);
