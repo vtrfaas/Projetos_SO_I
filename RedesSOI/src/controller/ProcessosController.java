@@ -14,6 +14,10 @@ public class ProcessosController
 		return so;
 	}
 	
+	public void getCobaia(){
+		//return cobaias
+	}
+	
 	public void testeDoMerge(){
 		//TODO
 	}
