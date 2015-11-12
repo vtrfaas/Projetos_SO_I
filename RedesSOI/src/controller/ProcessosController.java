@@ -14,21 +14,7 @@ public class ProcessosController
 		return so;
 	}
 	
-	public void testeDoMerge(){
-		//TODO
-	}
 	
-	public void mergeMergeMERGE(){
-		//TODO
-	}
-	
-	public void quantosMerges(){
-		
-	}
-	
-	public void mergesMerge(){
-		//AHHHHHHHH
-	}
 	
 	public void chamaProcesso(String caminho){
 		try {
